@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -494,7 +495,7 @@ footer p {
 <section class="product-section" id="large">
   <div class="product-layout">
     <div class="img-area" id="large-img-area">
-      <img id="large-img" src="imgs/amarilla_producto.jpeg" alt="OXA Large">
+      <img id="large-img" src="imgs/azul_lineas_producto.jpeg" alt="OXA Large">
       <button class="arrow arrow-l" onclick="prevSlide('large')" aria-label="Previous">&#8592;</button>
       <button class="arrow arrow-r" onclick="nextSlide('large')" aria-label="Next">&#8594;</button>
       <div class="slide-dots">
@@ -720,7 +721,7 @@ const PRODUCTS = {
 };
 
 const STATE = {
-  large: { color: PRODUCTS.large.colors[0], slide: 0 },
+  large: { color: PRODUCTS.large.colors[1], slide: 0 },
   small: { color: PRODUCTS.small.colors[0], slide: 0 }
 };
 
@@ -765,13 +766,19 @@ function renderSwatches(type) {
 // ── Colorways grid: shows ALL textures (large + small combined, deduplicated)
 function renderColorwaysGrid() {
   const grid = document.getElementById('colorways-grid');
-  // combine large and small, show large textures first
   const allColors = [
     ...PRODUCTS.large.colors.map(c => ({ color: c, type: 'large' })),
     ...PRODUCTS.small.colors
       .filter(c => !PRODUCTS.large.colors.includes(c))
       .map(c => ({ color: c, type: 'small' }))
   ];
+
+  // Pad to nearest multiple of 6 to avoid empty spaces
+  const cols = 6;
+  while (allColors.length % cols !== 0) {
+    allColors.push(allColors[allColors.length - cols]); // repeat from prev row
+  }
+
   grid.innerHTML = allColors.map(({ color, type }) =>
     `<div class="colorway-cell">
       <img src="${texPath(type, color)}" alt="${color.replace(/_/g,' ')}" loading="lazy">
