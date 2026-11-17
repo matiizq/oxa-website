@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -221,6 +220,16 @@ nav {
   margin-bottom: 16px;
 }
 .btn-buy:hover { background: var(--fc); color: #fff; }
+
+/* ─── CHILE LAUNCH BAR ───────────────────────── */
+.launch-bar {
+  background: var(--fc); color: #fff;
+  text-align: center;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: .16em; text-transform: uppercase;
+  padding: 10px 16px;
+}
+.launch-bar a { border-bottom: 1px solid rgba(255,255,255,.6); }
 
 .product-note {
   font-size: 12px; color: var(--mid);
@@ -464,6 +473,9 @@ footer p {
 </head>
 <body>
 
+<!-- ▸ CHILE LAUNCH BAR -->
+<div class="launch-bar">🇨🇱 Lanzamiento en Chile · Envíos a todo Chile · <a href="https://wa.me/56995367512?text=Hola%20OXA!%20Quiero%20saber%20m%C3%A1s%20de%20los%20bolsos" target="_blank" rel="noopener">Pide por WhatsApp</a></div>
+
 <!-- ▸ NAV -->
 <nav>
   <div class="nav-inner">
@@ -486,9 +498,9 @@ footer p {
 
 <!-- ▸ HERO -->
 <section class="hero">
-  <p class="hero-tag">Handwoven in Oaxaca · Ericeira, Portugal</p>
-  <h1 class="hero-title">"From the market<br>to <em>your hands.</em>"</h1>
-  <a href="#large" class="hero-cta">Shop the collection ↓</a>
+  <p class="hero-tag">Hecho a mano en México · Ahora en Chile</p>
+  <h1 class="hero-title">Bring the <em>colors.</em></h1>
+  <a href="#large" class="hero-cta">Ver la colección ↓</a>
 </section>
 
 <!-- ▸ OXA LARGE -->
@@ -508,13 +520,13 @@ footer p {
       <h2 class="product-name">OXA Large</h2>
       <span class="product-dims">40 × 35 × 15 cm</span>
       <div class="price-row">
-        <span class="price-now">€35</span>
-        <span class="price-meta"><s>€40</s> <span>Pre-launch price</span></span>
+        <span class="price-now">$22.000</span>
+        <span class="price-meta"><span>CLP · Precio de lanzamiento</span></span>
       </div>
-      <span class="swatches-label">Select pattern</span>
+      <span class="swatches-label">Elige tu diseño</span>
       <div class="swatches" id="large-swatches"></div>
-      <a href="https://pcq7d0-h2.myshopify.com/cart/57922815394123:1?channel=buy_button"
-         target="_blank" rel="noopener" class="btn-buy">Buy now</a>
+      <a id="large-buy" href="https://wa.me/56995367512?text=Hola%20OXA!%20Quiero%20el%20OXA%20Large"
+         target="_blank" rel="noopener" class="btn-buy">Pedir por WhatsApp</a>
       <p class="product-note">Made by artisans in Oaxaca, Mexico.<br>No two bags are identical.</p>
     </div>
   </div>
@@ -539,13 +551,13 @@ footer p {
       <h2 class="product-name">OXA Small</h2>
       <span class="product-dims">27 × 25 × 10 cm</span>
       <div class="price-row">
-        <span class="price-now">€30</span>
-        <span class="price-meta"><s>€35</s> <span>Pre-launch price</span></span>
+        <span class="price-now">$19.000</span>
+        <span class="price-meta"><span>CLP · Precio de lanzamiento</span></span>
       </div>
-      <span class="swatches-label">Select pattern</span>
+      <span class="swatches-label">Elige tu diseño</span>
       <div class="swatches" id="small-swatches"></div>
-      <a href="https://pcq7d0-h2.myshopify.com/cart/57922745270603:1?channel=buy_button"
-         target="_blank" rel="noopener" class="btn-buy">Buy now</a>
+      <a id="small-buy" href="https://wa.me/56995367512?text=Hola%20OXA!%20Quiero%20el%20OXA%20Small"
+         target="_blank" rel="noopener" class="btn-buy">Pedir por WhatsApp</a>
       <p class="product-note">Made by artisans in Oaxaca, Mexico.<br>No two bags are identical.</p>
     </div>
   </div>
@@ -671,7 +683,7 @@ footer p {
     </a>
 
     <!-- WhatsApp -->
-    <a href="https://wa.me/56995367512?text=Hi!%20I%27d%20like%20to%20know%20more%20about%20OXA%20bags"
+    <a href="https://wa.me/56995367512?text=Hola%20OXA!%20Quiero%20saber%20m%C3%A1s%20de%20los%20bolsos"
        target="_blank" rel="noopener" class="contact-col">
       <div class="contact-icon">
         <svg width="52" height="52" viewBox="0 0 24 24" fill="#25D366">
@@ -690,7 +702,7 @@ footer p {
 
 <!-- ▸ FOOTER -->
 <footer>
-  <p>OXA &nbsp;·&nbsp; @oxa.stall &nbsp;·&nbsp; "From the market to your hands." &nbsp;·&nbsp; © 2025</p>
+  <p>OXA &nbsp;·&nbsp; @oxa.stall &nbsp;·&nbsp; Bring the colors. &nbsp;·&nbsp; © 2026</p>
 </footer>
 
 <script>
@@ -747,6 +759,16 @@ function updateImage(type) {
   [0,1].forEach(i => document.getElementById(`${type}-dot-${i}`).classList.toggle('on', i === s.slide));
   document.querySelectorAll(`#${type}-swatches .swatch`).forEach(sw =>
     sw.classList.toggle('on', sw.dataset.color === s.color));
+  updateBuyLink(type);
+}
+
+// WhatsApp order link with the selected bag and design
+function updateBuyLink(type) {
+  const name = type === 'large' ? 'OXA Large ($22.000)' : 'OXA Small ($19.000)';
+  const design = STATE[type].color.replace(/_/g, ' ');
+  const msg = `Hola OXA! Quiero el ${name}, diseño "${design}". ¿Está disponible?`;
+  document.getElementById(`${type}-buy`).href =
+    `https://wa.me/56995367512?text=${encodeURIComponent(msg)}`;
 }
 
 function prevSlide(type) { STATE[type].slide = STATE[type].slide === 0 ? 1 : 0; updateImage(type); }
@@ -809,6 +831,8 @@ function lifestyleSlide(dir) {
 // ── Init
 renderSwatches('large');
 renderSwatches('small');
+updateBuyLink('large');
+updateBuyLink('small');
 renderColorwaysGrid();
 </script>
 </body>
