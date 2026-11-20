@@ -520,7 +520,7 @@ footer p {
       <h2 class="product-name">OXA Large</h2>
       <span class="product-dims">40 × 35 × 15 cm</span>
       <div class="price-row">
-        <span class="price-now">$22.000</span>
+        <span class="price-now">$25.000</span>
         <span class="price-meta"><span>CLP · Precio de lanzamiento</span></span>
       </div>
       <span class="swatches-label">Elige tu diseño</span>
@@ -551,7 +551,7 @@ footer p {
       <h2 class="product-name">OXA Small</h2>
       <span class="product-dims">27 × 25 × 10 cm</span>
       <div class="price-row">
-        <span class="price-now">$19.000</span>
+        <span class="price-now">$22.000</span>
         <span class="price-meta"><span>CLP · Precio de lanzamiento</span></span>
       </div>
       <span class="swatches-label">Elige tu diseño</span>
@@ -764,7 +764,7 @@ function updateImage(type) {
 
 // WhatsApp order link with the selected bag and design
 function updateBuyLink(type) {
-  const name = type === 'large' ? 'OXA Large ($22.000)' : 'OXA Small ($19.000)';
+  const name = type === 'large' ? 'OXA Large ($25.000)' : 'OXA Small ($22.000)';
   const design = STATE[type].color.replace(/_/g, ' ');
   const msg = `Hola OXA! Quiero el ${name}, diseño "${design}". ¿Está disponible?`;
   document.getElementById(`${type}-buy`).href =
